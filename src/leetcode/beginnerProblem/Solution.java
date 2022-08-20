@@ -483,4 +483,37 @@ public class Solution {
 		return missingInt; 
     }
 	
+	public List<Integer> findDisappearedNumbersV2(int[] nums) {
+		//https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/solution/
+		List<Integer> missingInts = new ArrayList<>();
+		for(int i = 0; i < nums.length; i++) {
+			int element = nums[i];
+			if(element < 0) {
+				int idx = element * (-1) - 1;
+				int idxToNum = nums[idx];
+				if(idxToNum < 0) {
+					continue;
+				} else {
+					nums[idx] = idxToNum * (-1);
+				}
+			} else {
+				int idx = element - 1;
+				int idxToNum = nums[idx];
+				if(idxToNum < 0) {
+					continue;
+				} else {
+					nums[idx] = idxToNum * (-1);
+				}
+			}
+		}
+		
+		for(int i = 0; i < nums.length; i++) {
+			if(nums[i] > 0) {
+				missingInts.add(i + 1);
+			}
+		}
+		
+		return missingInts;
+    }
+	
 }
