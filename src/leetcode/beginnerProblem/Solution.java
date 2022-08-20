@@ -374,5 +374,41 @@ public class Solution {
         }
         return swapCounter;
     }
+	
+	public int findMaxConsecutiveOnes1(int[] nums) {
+		//https://leetcode.com/explore/learn/card/fun-with-arrays/523/conclusion/3230/
+        int[] idxOfZeros = new int[nums.length];
+        int j = 0;
+        for(int i = 0 ; i < nums.length; i++) {
+        	if(nums[i] == 0) {
+        		idxOfZeros[j++] = i;
+        	}
+        }
+        
+        int max = 0;
+        for(int i = 0; i < j ; i++) {
+        	int prev = 0;
+        	int next = 0;
+        	if(i == 0) {
+        		prev = idxOfZeros[i];
+        	}
+        	if(i > 0) {
+        		prev = idxOfZeros[i] - idxOfZeros[i - 1] - 1;
+        	}
+        	if(i == j-1) {
+        		next = nums.length - idxOfZeros[i] - 1;
+        	}
+        	if(i < j - 1) {
+        		next = idxOfZeros[i + 1] - idxOfZeros[i] - 1;
+        	}
+        	
+        	int total = 1 + prev + next;
+        	if(max < total) {
+        		max = total;
+        	}
+        }
+        max = j == 0 ? nums.length : max;
+        return max;
+    }
 
 }
