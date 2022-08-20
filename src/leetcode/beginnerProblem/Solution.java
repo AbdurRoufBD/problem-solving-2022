@@ -451,4 +451,36 @@ public class Solution {
 	
 		return max3Exist ? max : max1;
 	}
+	
+	public void alignArray(int[] nums) {
+		for(int i = 0 ; i < nums.length; i++) {
+			int expected = i + 1;
+			int currentElement = nums[i];
+			if(currentElement != expected) {
+				int j = currentElement - 1;
+				int temp = nums[j];
+				nums[j] = nums[i];
+				nums[i] = temp;
+			}
+		}
+	}
+	
+	public List<Integer> findDisappearedNumbers(int[] nums) {
+		//https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/solution/
+		alignArray(nums);
+		alignArray(nums);
+		alignArray(nums);
+		alignArray(nums);
+		alignArray(nums);
+		List<Integer> missingInt = new ArrayList<>();
+		for(int i = 0; i < nums.length; i++) {
+			int expected = i + 1;
+			int currentElement = nums[i];
+			if(expected != currentElement) {
+				missingInt.add(expected);
+			}
+		}
+		return missingInt; 
+    }
+	
 }
