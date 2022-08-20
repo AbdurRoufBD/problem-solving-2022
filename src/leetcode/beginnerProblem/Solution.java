@@ -410,5 +410,45 @@ public class Solution {
         max = j == 0 ? nums.length : max;
         return max;
     }
-
+	
+	
+	public int thirdMax(int[] nums) {
+		//https://leetcode.com/explore/learn/card/fun-with-arrays/523/conclusion/3231/
+		int[] remarks = new int[nums.length];
+		//remarks 1st max
+		int max = Integer.MIN_VALUE;
+		for(int i = 0; i < nums.length; i++) {
+			if(max <= nums[i]) {
+				max = nums[i];
+			}
+		}
+		
+		int max1 = max;
+		
+		//remarks 2nd max
+		boolean max2Exist = false;
+		max = Integer.MIN_VALUE;
+		for(int i = 0; i < nums.length; i++) {
+			if(max <= nums[i] && nums[i] != max1) {
+				max = nums[i];
+				max2Exist = true;
+			}
+		}
+		
+		int max2 = max2Exist ? max : max1;
+		
+		//remarks 3rd max
+		boolean max3Exist = false;
+		max = Integer.MIN_VALUE;
+		for(int i = 0; i < nums.length; i++) {
+			if(max <= nums[i] && nums[i] != max1 && nums[i] != max2) {
+				max = nums[i];
+				max3Exist = true;
+			}
+		}
+		
+		
+	
+		return max3Exist ? max : max1;
+	}
 }
