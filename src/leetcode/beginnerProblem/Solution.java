@@ -303,11 +303,6 @@ public class Solution {
 		return size - deletedElements;
 	}
 	
-	public void swap(int[] nums, int idx1, int idx2) {
-		int temp = nums[idx1];
-		nums[idx1] = nums[idx2];
-		nums[idx2] = temp;
-	}
 	public void moveZeroes(int[] nums) {
 		//https://leetcode.com/explore/learn/card/fun-with-arrays/511/in-place-operations/3157/
 		int size = nums.length;
@@ -328,7 +323,36 @@ public class Solution {
 				j++;
 			}
 		}
-		int a = 100;
+    }
+	
+	public void swap(int[] nums, int idx1, int idx2) {
+		int temp = nums[idx1];
+		nums[idx1] = nums[idx2];
+		nums[idx2] = temp;
+	}
+	public boolean checkEven(int num) {
+		return num%2 == 0;
+	}
+	public int[] sortArrayByParity(int[] nums) {
+		int size = nums.length;
+		int i = 0; 
+		int j = i + 1;
+		while(j < size) {
+			if(checkEven(nums[i]) == false && checkEven(nums[j]) == false) {
+				j++;
+			} else if(checkEven(nums[i]) == true && checkEven(nums[j]) == false) {
+				j++;
+				i++;
+			} else if(checkEven(nums[i]) == false && checkEven(nums[j]) == true) {
+				swap(nums,i, j);
+				i++;
+				j++;
+			} else if(checkEven(nums[i]) == true && checkEven(nums[j]) == true) {
+				i++;
+				j++;
+			}
+		}
+		return nums;
     }
 
 }
