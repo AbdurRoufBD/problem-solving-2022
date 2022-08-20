@@ -1,6 +1,7 @@
 package leetcode.beginnerProblem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -334,6 +335,7 @@ public class Solution {
 		return num%2 == 0;
 	}
 	public int[] sortArrayByParity(int[] nums) {
+		//https://leetcode.com/explore/learn/card/fun-with-arrays/511/in-place-operations/3260/
 		int size = nums.length;
 		int i = 0; 
 		int j = i + 1;
@@ -353,6 +355,24 @@ public class Solution {
 			}
 		}
 		return nums;
+    }
+	
+	public int heightChecker(int[] heights) {
+		//https://leetcode.com/explore/learn/card/fun-with-arrays/523/conclusion/3228/
+        int size = heights.length;
+        int[] heightsCopied = new int[size];
+        for(int i = 0; i < size; i++) {
+        	heightsCopied[i] = heights[i];
+        }
+        
+        Arrays.sort(heights);
+        int swapCounter = 0;
+        for(int i = 0; i < size; i++) {
+        	if(heightsCopied[i] != heights[i]) {
+        		swapCounter++;
+        	}
+        }
+        return swapCounter;
     }
 
 }
