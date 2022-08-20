@@ -302,5 +302,33 @@ public class Solution {
 		}
 		return size - deletedElements;
 	}
+	
+	public void swap(int[] nums, int idx1, int idx2) {
+		int temp = nums[idx1];
+		nums[idx1] = nums[idx2];
+		nums[idx2] = temp;
+	}
+	public void moveZeroes(int[] nums) {
+		//https://leetcode.com/explore/learn/card/fun-with-arrays/511/in-place-operations/3157/
+		int size = nums.length;
+		int i = 0; 
+		int j = i + 1;
+		while(j < size) {
+			if(nums[i] == 0 && nums[j] == 0) {
+				j++;
+			} else if(nums[i] != 0 && nums[j] == 0) {
+				j++;
+				i++;
+			} else if(nums[i] == 0 && nums[j] != 0) {
+				swap(nums,i, j);
+				i++;
+				j++;
+			} else if(nums[i] != 0 && nums[j] != 0) {
+				i++;
+				j++;
+			}
+		}
+		int a = 100;
+    }
 
 }
