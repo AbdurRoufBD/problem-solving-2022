@@ -484,7 +484,7 @@ public class Solution {
     }
 	
 	public List<Integer> findDisappearedNumbersV2(int[] nums) {
-		//https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/solution/
+		//https://leetcode.com/explore/learn/card/fun-with-arrays/523/conclusion/3270/
 		List<Integer> missingInts = new ArrayList<>();
 		for(int i = 0; i < nums.length; i++) {
 			int element = nums[i];
@@ -506,14 +506,52 @@ public class Solution {
 				}
 			}
 		}
-		
 		for(int i = 0; i < nums.length; i++) {
 			if(nums[i] > 0) {
 				missingInts.add(i + 1);
 			}
 		}
-		
 		return missingInts;
     }
 	
+	public int[] sortedSquares(int[] nums) {
+		//https://leetcode.com/explore/learn/card/fun-with-arrays/523/conclusion/3574/
+        List<Integer> listOfNegativeNumbers = new ArrayList<>();
+        List<Integer> listOfPositiveNumbers = new ArrayList<>();
+        for(int i = 0; i < nums.length; i++) {
+        	if(nums[i] < 0) {
+        		listOfNegativeNumbers.add(nums[i] * nums[i]);
+        	} else {
+        		listOfPositiveNumbers.add(nums[i] * nums[i]);
+        	}
+        }
+        //its time to merge two sorted ARRAY
+        
+        int negativeArraySize = listOfNegativeNumbers.size();
+        int positiveArraySize = listOfPositiveNumbers.size();
+        
+        int i = negativeArraySize - 1;
+        int j = 0;
+        int k = 0;
+        
+        while(k < nums.length) {
+        	if(i >= 0 && j < positiveArraySize) {
+        		if(listOfNegativeNumbers.get(i) < listOfPositiveNumbers.get(j)) {
+        			nums[k] = listOfNegativeNumbers.get(i);
+        			i--;
+        		} else {
+        			nums[k] = listOfPositiveNumbers.get(j);
+        			j++;
+        		}
+        	} else if(i < 0 && j < positiveArraySize) {
+        		nums[k] = listOfPositiveNumbers.get(j);
+				j++;
+        	} else if(i >= 0 && j >= positiveArraySize) {
+        		nums[k] = listOfNegativeNumbers.get(i);
+    			i--;
+        	}
+        	k++;	
+        }
+		return nums;
+    }
 }
