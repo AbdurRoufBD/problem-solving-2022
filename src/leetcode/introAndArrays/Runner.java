@@ -1,4 +1,4 @@
-package leetcode.beginnerProblem;
+package leetcode.introAndArrays;
 
 public class Runner {
 	public static void main(String[] args) {

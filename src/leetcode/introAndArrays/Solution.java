@@ -1,4 +1,4 @@
-package leetcode.beginnerProblem;
+package leetcode.introAndArrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
