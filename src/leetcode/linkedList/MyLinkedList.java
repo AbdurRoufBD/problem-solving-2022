@@ -1,13 +1,6 @@
 package leetcode.linkedList;
 
-class SinglyListNode {
-    public int val;
-    public SinglyListNode next;
-    public SinglyListNode(int val) {
-    	this.val = val; 
-    }
-}
-
+//https://leetcode.com/explore/learn/card/linked-list/209/singly-linked-list/1290/
 public class MyLinkedList {
 	private SinglyListNode head;
 	
@@ -56,8 +49,15 @@ public class MyLinkedList {
     
     public void addAtIndex(int index, int val) {
         int listLen = this.getListLength();
-        if(index >= listLen) {
+        if(index > listLen) {
         	return;
+        }
+        
+        if(index == 0) {
+        	 SinglyListNode newNode = new SinglyListNode(val);
+        	 newNode.next = head;
+        	 head = newNode;
+        	 return;
         }
         
         SinglyListNode traverser = head;
