@@ -40,6 +40,8 @@ public class Solution {
     			pointer.val = pointer.val - maxValue;
     			finalNode = pointer;
     			break;
+    		} else {
+    			pointer.val = pointer.val + maxValue;
     		}
     		
     		pointer = pointer.next;
