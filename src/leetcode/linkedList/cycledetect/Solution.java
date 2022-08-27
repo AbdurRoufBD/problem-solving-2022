@@ -53,4 +53,33 @@ public class Solution {
     		return finalNode;
     	}
     }
+    
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    	//https://leetcode.com/explore/learn/card/linked-list/214/two-pointer-technique/1215/
+        ListNode intercpetionNode = null;
+        //mark all node to negative
+        ListNode parserNode = headA;
+        while(parserNode!=null) {
+        	parserNode.val = parserNode.val * (-1);
+        	parserNode = parserNode.next;
+        }
+        
+        parserNode = headB;
+        //search negative node from second list
+        while(parserNode != null) {
+        	if(parserNode.val < 0) {
+        		intercpetionNode = parserNode;
+        		break;
+        	}
+            parserNode = parserNode.next;
+        }
+        
+        //mark all node to positive
+        parserNode = headA;
+        while(parserNode!=null) {
+        	parserNode.val = parserNode.val * (-1);
+        	parserNode = parserNode.next;
+        }
+    	return intercpetionNode;
+    }
 }
