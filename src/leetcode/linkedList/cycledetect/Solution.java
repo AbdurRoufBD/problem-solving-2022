@@ -82,4 +82,39 @@ public class Solution {
         }
     	return intercpetionNode;
     }
+    
+    public int listLength(ListNode head) {
+    	int len = 0;
+    	ListNode parser = head;
+    	while(parser != null) {
+    		parser = parser.next;
+    		len++;
+    	}
+    	return len;
+    }
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+    	//https://leetcode.com/explore/learn/card/linked-list/214/two-pointer-technique/1296/
+        int len = listLength(head);
+        int deletedIdx = len - n;
+        
+        ListNode parser = head;
+        if(deletedIdx == 0) {
+        	head = head.next;
+        	return head;
+        }
+        
+        int i = 0;
+        while(i < deletedIdx-1) {
+        	parser = parser.next;
+            i++;
+        }
+        
+        if(parser.next != null) {
+        	parser.next = parser.next.next;
+        } else {
+        	parser.next = null;
+        }
+        
+    	return head;
+    }
 }
