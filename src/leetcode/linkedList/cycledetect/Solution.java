@@ -92,7 +92,7 @@ public class Solution {
     	}
     	return len;
     }
-    public ListNode removeNthFromEnd(ListNode head, int n) {
+    public ListNode removeNthFromEndPrev(ListNode head, int n) {
     	//https://leetcode.com/explore/learn/card/linked-list/214/two-pointer-technique/1296/
         int len = listLength(head);
         int deletedIdx = len - n;
@@ -113,6 +113,39 @@ public class Solution {
         	parser.next = parser.next.next;
         } else {
         	parser.next = null;
+        }
+        
+    	return head;
+    }
+    
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+    	//https://leetcode.com/explore/learn/card/linked-list/214/two-pointer-technique/1296/
+        ListNode slowNode = head;
+        ListNode fastNode = head;
+        ListNode parser = head;
+        
+        for(int i = 0; i <= n; i++) {
+        	if(parser!=null) {
+        		parser = parser.next;
+        	} else {
+        		break;
+        	}
+        }
+        
+        fastNode = parser;
+        
+        while(fastNode!=null) {
+        	fastNode = fastNode.next;
+        	slowNode = slowNode.next;
+        }
+        
+        if(slowNode.next != null) {
+        	slowNode.next = slowNode.next.next;
+        } else {
+        	if(slowNode == head) {
+        		head = null;
+        		slowNode  = null;
+        	}
         }
         
     	return head;
