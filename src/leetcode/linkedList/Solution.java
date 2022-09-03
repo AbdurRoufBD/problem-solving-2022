@@ -37,4 +37,49 @@ public class Solution {
         
         return preHeadNode.next;
     }
+	
+	public ListNode oddEvenList(ListNode head) {
+		//https://leetcode.com/explore/learn/card/linked-list/219/classic-problems/1208/
+        ListNode evenHead = null;
+        ListNode itr = head;
+        ListNode evenItr = evenHead;
+        int i = 1;
+        while(itr != null) {
+        	if(itr.next != null) {
+        		if(i == 1) {
+        			evenHead = itr.next;
+        			evenItr = evenHead;
+        		} else {
+        			evenItr.next = itr.next;
+        		}
+        		
+        		
+        		itr.next = itr.next.next;
+        		
+        		
+        		if(i == 1) {
+        			evenItr.next = null;
+        		} else {
+        			evenItr = evenItr.next;
+        			evenItr.next = null;
+        		}
+        		
+        		i += 2;
+        	}
+        	itr = itr.next;
+        }
+        
+        //append 
+        itr = head;
+        while(itr != null && itr.next != null) {
+        	itr = itr.next;
+        }
+        
+        if(itr != null) {
+        	itr.next = evenHead;
+        }
+        
+        
+		return head;
+    }
 }
