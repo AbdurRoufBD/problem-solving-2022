@@ -2,22 +2,17 @@ package leetcode.linkedList;
 
 public class Runner {
 	public static void main(String[] args) {
-		MyLinkedList obj = new MyLinkedList();
-		obj.deleteAtIndex(0);
+		ListNode obj10 = new ListNode(10);
+		ListNode obj20 = new ListNode(20);
+		ListNode obj30 = new ListNode(30);
+		ListNode obj40 = new ListNode(40);
 		
-		obj.addAtIndex(0, 10);
-		obj.printList();
-
-
-		obj.addAtIndex(0, 20);
-		obj.printList();
-
-
-		obj.addAtIndex(1, 30);
-		obj.printList();
-
-
-		obj.get(0);
-		obj.printList();
+		ListNode head = obj10;
+//		obj10.next = obj20;
+//		obj20.next = obj30;
+//		obj30.next = obj40;
+		
+		new Solution().reverseList(head);
+		
 	}
 }
