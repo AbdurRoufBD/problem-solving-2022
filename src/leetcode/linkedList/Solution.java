@@ -16,4 +16,25 @@ public class Solution {
 		}
 		return head;
 	}
+	
+	
+	public ListNode removeElements(ListNode head, int val) {
+		//https://leetcode.com/explore/learn/card/linked-list/219/classic-problems/1207/
+        ListNode preHeadNode = new ListNode(999);
+        preHeadNode.next = head;
+        
+        ListNode curNode = head;
+        ListNode prevNode = preHeadNode;
+        
+        while(curNode!=null) {
+        	if(curNode.val == val) {
+        		prevNode.next = curNode.next;
+        	} else {
+        		prevNode = prevNode.next;
+        	}
+        	curNode = curNode.next;
+        }
+        
+        return preHeadNode.next;
+    }
 }
