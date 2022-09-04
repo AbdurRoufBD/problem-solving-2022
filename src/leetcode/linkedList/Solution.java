@@ -1,21 +1,6 @@
 package leetcode.linkedList;
 
 public class Solution {
-	public ListNode reverseList(ListNode head) {
-		//https://leetcode.com/explore/learn/card/linked-list/219/classic-problems/1205/
-		if(head==null) {
-			return head;
-		}
-		ListNode blackNode = head;
-		ListNode itrNode = head.next;
-		while(itrNode != null ) {
-			blackNode.next = itrNode.next;
-			itrNode.next = head;
-			head = itrNode;
-			itrNode = blackNode.next;
-		}
-		return head;
-	}
 	
 	
 	public ListNode removeElements(ListNode head, int val) {
@@ -82,4 +67,79 @@ public class Solution {
         
 		return head;
     }
+
+	public ListNode reverseList(ListNode head) {
+		//https://leetcode.com/explore/learn/card/linked-list/219/classic-problems/1205/
+		if(head==null) {
+			return head;
+		}
+		ListNode blackNode = head;
+		ListNode itrNode = head.next;
+		while(itrNode != null ) {
+			blackNode.next = itrNode.next;
+			itrNode.next = head;
+			head = itrNode;
+			itrNode = blackNode.next;
+		}
+		return head;
+	}
+	
+	public int getLListLength(ListNode head) {
+		ListNode itr = head;
+		int counter = 0;
+		while(itr != null) {
+			itr = itr.next;
+			counter++;
+		}
+		return counter;
+	}
+	
+	public ListNode getNodeByIdx(ListNode head, int idx) {
+		ListNode dstNode = null;
+		ListNode itr = head;
+		for(int i = 0; i <= idx; i++) {
+			if(i == idx) {
+				dstNode = itr;
+			}
+			itr = itr.next;
+		}
+		return dstNode;
+	}
+	
+	public boolean isPalindrome(ListNode head) {
+		//https://leetcode.com/explore/learn/card/linked-list/219/classic-problems/1209/
+		int len = getLListLength(head);
+		if(len <= 1) {
+			return true;
+		}
+		
+		int secondHalfFirstNodeIdx = len % 2 == 0 ? len/2 : len/2 + 1;
+		int firstHalfLastNodeIdx = secondHalfFirstNodeIdx - 1;
+		
+		ListNode firstHalfLastNode = getNodeByIdx(head, firstHalfLastNodeIdx);
+		ListNode secondHalfFirstNode = getNodeByIdx(head, secondHalfFirstNodeIdx);
+		
+		if(firstHalfLastNode!=null && secondHalfFirstNode!=null) {
+			firstHalfLastNode.next = null; // seperate 2 list
+			ListNode secondHead = secondHalfFirstNode;
+			secondHead = reverseList(secondHead);
+			ListNode itr2 = secondHead;
+			ListNode itr1 = head;
+			boolean isPalindrome = true;
+			while(itr2!=null) {
+				if(itr2.val != itr1.val) {
+					isPalindrome = false;
+					break;
+				}
+				itr2 = itr2.next;
+				itr1 = itr1.next;
+			}
+			
+			return isPalindrome;
+		} else {
+			return true;
+		}
+        
+    }
+
 }
