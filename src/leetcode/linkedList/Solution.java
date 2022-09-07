@@ -141,5 +141,70 @@ public class Solution {
 		}
         
     }
+	
+	public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+		//https://leetcode.com/explore/learn/card/linked-list/213/conclusion/1227/
+		list1 = reverseList(list1);
+		list2 = reverseList(list2);
+		
+        ListNode list1HeaderExtension = new ListNode(Integer.MIN_VALUE);
+        ListNode list2HeaderExtension = new ListNode(Integer.MIN_VALUE);
+        
+        list1HeaderExtension.next = list1;
+        list2HeaderExtension.next = list2;
+        
+      
+        ListNode mergedSortedList = new ListNode(Integer.MIN_VALUE);
+        
+        
+        while(list1HeaderExtension.next!=null || list2HeaderExtension.next != null) {
+        	int list1CurrentHeadItem = list1HeaderExtension.next != null ? list1HeaderExtension.next.val : Integer.MIN_VALUE;
+        	int list2CurrentHeadItem = list2HeaderExtension.next != null ? list2HeaderExtension.next.val : Integer.MIN_VALUE;
+        	if(list1CurrentHeadItem > Integer.MIN_VALUE && list2CurrentHeadItem > Integer.MIN_VALUE) {
+        		//both head exists
+        		if(list1CurrentHeadItem > list2CurrentHeadItem) {
+        			ListNode curMergedListHeadNode = mergedSortedList.next;
+        			ListNode newNode = new ListNode(list1CurrentHeadItem);
+        			newNode.next = curMergedListHeadNode;
+        			mergedSortedList.next = newNode;
+        			
+        			list1HeaderExtension.next = list1HeaderExtension.next.next;
+        		} else {
+        			ListNode curMergedListHeadNode = mergedSortedList.next;
+        			ListNode newNode = new ListNode(list2CurrentHeadItem);
+        			newNode.next = curMergedListHeadNode;
+        			mergedSortedList.next = newNode;
+        			
+        			list2HeaderExtension.next = list2HeaderExtension.next.next;
+        		}
+        		
+        	} else if(list1CurrentHeadItem > Integer.MIN_VALUE && list2CurrentHeadItem == Integer.MIN_VALUE) {
+        		//list1 has remainig item
+        		ListNode curMergedListHeadNode = mergedSortedList.next;
+    			ListNode newNode = new ListNode(list1CurrentHeadItem);
+    			newNode.next = curMergedListHeadNode;
+    			mergedSortedList.next = newNode;
+    			
+    			list1HeaderExtension.next = list1HeaderExtension.next.next;
+        		
+        	} else if(list1CurrentHeadItem == Integer.MIN_VALUE && list2CurrentHeadItem > Integer.MIN_VALUE) {
+        		//list2 has remainig item
+        		ListNode curMergedListHeadNode = mergedSortedList.next;
+    			ListNode newNode = new ListNode(list2CurrentHeadItem);
+    			newNode.next = curMergedListHeadNode;
+    			mergedSortedList.next = newNode;
+    			
+    			list2HeaderExtension.next = list2HeaderExtension.next.next;
+        		
+        	} else {
+        		break;
+        	}
+        	
+        }
+        
+		ListNode mergedList = mergedSortedList.next;
+		//mergedList = reverseList(mergedList);
+		return mergedList;
+    }
 
 }
