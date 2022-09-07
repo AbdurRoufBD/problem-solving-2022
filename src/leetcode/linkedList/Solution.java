@@ -207,4 +207,58 @@ public class Solution {
 		return mergedList;
     }
 
+	
+	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+		//https://leetcode.com/explore/learn/card/linked-list/213/conclusion/1228/
+		
+        ListNode itr1 = l1;
+        ListNode itr2 = l2;
+        
+        ListNode sumList = null;
+        ListNode sumListItr = sumList;
+        int carryIn = 0;
+        
+        while(true) {
+        	ListNode newNode = new ListNode();
+        	if(itr1 != null && itr2 != null) {
+        		int sum = itr1.val + itr2.val + carryIn;
+        		int sumD = sum % 10;
+        		carryIn = sum / 10;
+        		newNode.val = sumD;
+        		
+        		itr1 = itr1.next;
+        		itr2 = itr2.next;
+        	} else if(itr1 != null && itr2 == null) {
+        		int sum = itr1.val + carryIn;
+        		int sumD = sum % 10;
+        		carryIn = sum / 10;
+        		newNode.val = sumD;
+        		
+        		itr1 = itr1.next;
+        	} else if(itr1 == null && itr2 != null) {
+        		int sum = itr2.val + carryIn;
+        		int sumD = sum % 10;
+        		carryIn = sum / 10;
+        		newNode.val = sumD;
+        		
+        		itr2 = itr2.next;
+        	} else {
+        		if(carryIn > 0) {
+        			newNode.val = carryIn;
+        			carryIn = 0;
+        		}
+        	}
+        	
+        	if(sumList == null) {
+        		sumList = newNode;
+        		sumListItr = sumList;
+        	} else {
+        		sumListItr.next = newNode;
+        		sumListItr = sumListItr.next;
+        	}
+        	
+        	if(itr1 == null && itr2 == null && carryIn == 0) break;
+        } 
+        return sumList;
+    }
 }
