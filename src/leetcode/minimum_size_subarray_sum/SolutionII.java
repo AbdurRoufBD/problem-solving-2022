@@ -2,6 +2,7 @@ package leetcode.minimum_size_subarray_sum;
 
 public class SolutionII {
     public int minSubArrayLen(int target, int[] nums) {
+        ////https://leetcode.com/explore/learn/card/array-and-string/205/array-two-pointer-technique/1299/
         int sum = 0;
         int ans = Integer.MAX_VALUE;
         int initIdx = 0;
