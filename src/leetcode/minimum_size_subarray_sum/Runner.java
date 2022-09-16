@@ -3,7 +3,7 @@ package leetcode.minimum_size_subarray_sum;
 public class Runner {
     public static void main(String[] args) {
         int[] arr = {3,4,5,6,1,3};
-        new Solution().minSubArrayLen(12,arr);
+        new SolutionII().minSubArrayLen(12,arr);
     }
 }
 
