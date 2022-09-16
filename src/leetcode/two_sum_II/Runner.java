@@ -1,4 +1,4 @@
-package leetcode.two_sum_I;
+package leetcode.two_sum_II;
 
 public class Runner {
     public static void main(String[] args) {

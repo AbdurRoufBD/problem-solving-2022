@@ -1,6 +1,4 @@
-package leetcode.two_sum_I;
-
-import java.util.Map;
+package leetcode.two_sum_II;
 
 public class Solution {
     public int binarySearch(int[] numbers, int item) {
