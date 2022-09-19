@@ -35,6 +35,7 @@ class Entry implements Comparable<Entry> {
     }
 }
 public class Solution {
+    //https://leetcode.com/explore/learn/card/hash-table/187/conclusion-hash-table/1133/
     public int[] topKFrequent(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap<>();
         for(int n: nums) {
