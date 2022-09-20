@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Solution {
+    //https://leetcode.com/explore/learn/card/hash-table/187/conclusion-hash-table/1134/
     public int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
         Map<Integer, Integer> map = new HashMap<>();
         for(int a : nums1) {
