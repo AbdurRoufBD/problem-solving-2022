@@ -6,41 +6,29 @@ import java.util.List;
 import java.util.Set;
 
 public class Solution {
+    //https://leetcode.com/explore/learn/card/hash-table/184/comparison-with-other-data-structures/1117/
     public boolean isIsomorphic(String s, String t) {
-        HashMap<Character, Integer> sMap = new HashMap<>();
-        HashMap<Character, Integer> tMap = new HashMap<>();
+        HashMap<Character, Character> s_to_t = new HashMap<>();
+        HashMap<Character, Character> t_to_s = new HashMap<>();
         if(s.length() != t.length()) {
             return false;
         }
-
         int len = s.length();
         for(int i = 0; i < len; i++) {
-            char sc = s.charAt(i);
-            char tc = t.charAt(i);
-            if(sMap.containsKey(sc)) {
-                sMap.put(sc, sMap.get(sc) + 1);
-            } else {
-                sMap.put(sc, 1);
-            }
-
-            if(tMap.containsKey(tc)) {
-                tMap.put(tc, tMap.get(tc) + 1);
-            } else {
-                tMap.put(tc, 1);
-            }
-        }
-
-        if(sMap.size() != tMap.size()) {
-            return false;
-        }
-
-        List<Integer> sMapList = new ArrayList<>(sMap.values());
-        List<Integer> tMapList = new ArrayList<>(sMap.values());
-        for(int i = 0; i < sMapList.size(); i++) {
-            if(sMapList.get(i) != tMapList.get(i)) {
-                return false;
-            } else {
+            Character sc = s.charAt(i);
+            Character tc = t.charAt(i);
+            if(
+                    s_to_t.containsKey(sc) &&
+                    t_to_s.containsKey(tc) &&
+                    s_to_t.get(sc) == tc &&
+                    t_to_s.get(tc) == sc
+            ) {
                 continue;
+            } else if(!s_to_t.containsKey(sc) && !t_to_s.containsKey(tc)) {
+                s_to_t.put(sc, tc);
+                t_to_s.put(tc, sc);
+            } else {
+                return false;
             }
         }
         return true;
