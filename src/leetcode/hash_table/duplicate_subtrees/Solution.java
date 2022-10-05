@@ -11,7 +11,7 @@ public class Solution {
             return "*";
         }
 
-        String treeInStr = postOrder(node.left, map, ans) + "," + postOrder(node.right, map, ans) + "," + node.val;
+        String treeInStr = node.val + "," + postOrder(node.left, map, ans) + "," + postOrder(node.right, map, ans) ;
         map.put(treeInStr, map.getOrDefault(treeInStr, 0) + 1);
         if(map.get(treeInStr) == 2) {
             ans.add(node);
