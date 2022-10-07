@@ -1,4 +1,4 @@
-package leetcode.queue_stack;
+package leetcode.queue_stack.moving_average;
 
 public class MovingAverage {
     private int size;
