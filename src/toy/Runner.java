@@ -9,8 +9,9 @@ public class Runner {
                 {"Yeamin", "Most funniest person in the world", "098765", "23"}
         };
         DBTablePrinter dbTablePrinter = new DBTablePrinter(data);
-        //System.out.println(dbTablePrinter.printHorizontalLine());
         dbTablePrinter.printTable();
 
     }
 }
+
+

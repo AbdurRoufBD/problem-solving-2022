@@ -4,15 +4,17 @@ public class DBTablePrinter {
     private String[][] data;
     private int rows;
     private int columns;
-    private String hLine;
+    private String hLine; //+-------+----------------------------------+-------+----+
     private int[] columnSizeArr;
+
     public DBTablePrinter(String[][] data) {
         this.rows = 0;
         this.columns = 0;
 
         if(data!=null) {
-            this.rows = data.length;
-            if(this.rows >= 1) {
+            this.rows = data.length; // how many one D array in two D array
+
+            if(this.rows >= 1) { // corner case
                 this.columns = data[0].length;
             }
             this.data = new String[this.rows][this.columns];
@@ -43,11 +45,13 @@ public class DBTablePrinter {
         }
 
         this.columnSizeArr = columnSizeArr;
+
     }
 
     private void setHorizontalLine() {
         String hLine = "";
         int[] columnSizeArr = this.columnSizeArr;
+        //7 26 9 4
         for(int j = 0; j < columns; j++) {
             String hColumnLine = "+";
             for(int i = 0; i < columnSizeArr[j]; i++) {
@@ -55,7 +59,7 @@ public class DBTablePrinter {
             }
             hLine += hColumnLine;
         }
-        hLine+="+";
+        hLine += "+";
         this.hLine = hLine;
     }
 
@@ -75,3 +79,9 @@ public class DBTablePrinter {
         }
     }
 }
+
+// |Name
+// |Description
+// |JobID
+// |Age
+// |
