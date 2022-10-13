@@ -13,7 +13,6 @@ public class Solution {
 
     public void calculateIsland(char[][] grid, int[] node) {
         for(int k = 0; k < directions.length; k++) {
-
             int x = node[0] + directions[k][0];
             int y = node[1] + directions[k][1];
             if(x < 0 || y < 0 || x >= grid.length || y >= grid[0].length || grid[x][y] == '0') {
