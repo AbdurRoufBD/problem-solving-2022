@@ -3,6 +3,21 @@ package leetcode.queue_stack.binary_tree_inorder_traversal;
 import java.util.*;
 
 public class Solution {
+    private void pushTree(Stack<TreeNode> stack, Set<TreeNode> visited, TreeNode node) {
+        if(node.right != null && !visited.contains(node.right)) {
+            stack.push(node.right);
+            visited.add(node.right);
+        }
+
+        stack.push(node);
+        visited.add(node);
+
+        if(node.left != null  && !visited.contains(node.left)) {
+            stack.push(node.left);
+            visited.add(node.left);
+        }
+
+    }
     public List<Integer> inorderTraversal(TreeNode root) {
         if(root == null) {
             return new ArrayList<>();
@@ -10,21 +25,21 @@ public class Solution {
         Set<TreeNode> visited = new HashSet<>();
         List<Integer> inorder = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
-        stack.add(root);
+
+        pushTree(stack, visited, root);
 
         while(!stack.isEmpty()) {
             TreeNode node = stack.pop();
-            if(node.left == null) {
-                inorder.add(node.val);
-            } else {
-                if(node.right != null) {
+            if((node.left == null || visited.contains(node.left))) {
+
+                if(node.right != null && !visited.contains(node.right)) {
                     stack.push(node.right);
                     visited.add(node.right);
                 }
-                stack.push(node);
-                visited.add(node);
-                stack.push(node.left);
-                visited.add(node.left);
+
+                inorder.add(node.val);
+            } else {
+                pushTree(stack, visited, node);
             }
         }
         return inorder;
