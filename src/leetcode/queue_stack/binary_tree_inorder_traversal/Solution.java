@@ -19,6 +19,7 @@ public class Solution {
 
     }
     public List<Integer> inorderTraversal(TreeNode root) {
+        //https://leetcode.com/explore/learn/card/queue-stack/232/practical-application-stack/1383/
         if(root == null) {
             return new ArrayList<>();
         }
@@ -32,7 +33,7 @@ public class Solution {
             TreeNode node = stack.pop();
             if((node.left == null || visited.contains(node.left))) {
 
-                if(node.right != null && !visited.contains(node.right)) {
+                if(node.right != null && !visited.contains(node.right)) { // corner case
                     stack.push(node.right);
                     visited.add(node.right);
                 }
