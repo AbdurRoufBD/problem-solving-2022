@@ -11,7 +11,7 @@ public class Runner {
 //        node1.left = node2;
 //        node1.right = node3;
 //
-//        new Solution().inorderTraversal(node1);
+//        new KthLargest().inorderTraversal(node1);
 
         TreeNode node1 = new TreeNode(1);
         TreeNode node2 = new TreeNode(2);
