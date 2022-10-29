@@ -1,7 +1,7 @@
 package leetcode.heap.furthest_building_you_can_reach;
 
 import java.util.PriorityQueue;
-
+//https://leetcode.com/explore/learn/card/heap/646/practices/4091/
 public class Solution {
     public int furthestBuilding(int[] heights, int bricks, int ladders) {
         PriorityQueue<Integer> laddersMinHeap = new PriorityQueue<>();
@@ -23,10 +23,12 @@ public class Solution {
                         bricks -= diff;
                         count++;
                         continue;
-                    } else if (top == -1 && bricks < diff) {
+                    }
+                    else if (top == -1 && bricks < diff) {
                         break;
-                    } else {
-                        if(top > diff && bricks >= diff) {
+                    }
+                    else {
+                        if(top >= diff && bricks >= diff) {
                             bricks -= diff;
                             count++;
                         } else if(top < diff && bricks >= top) {
