@@ -6,7 +6,7 @@ import java.util.PriorityQueue;
 public class MedianFinder {
     private PriorityQueue<Integer> lowerHalfMaxHeap;
     private PriorityQueue<Integer> upperHalfMinHeap;
-
+//https://leetcode.com/explore/learn/card/heap/646/practices/4092/
     public MedianFinder() {
         lowerHalfMaxHeap = new PriorityQueue<>(Comparator.reverseOrder());
         upperHalfMinHeap = new PriorityQueue<>();
@@ -24,14 +24,18 @@ public class MedianFinder {
                     upperHalfMinHeap.add(num);
                 }
             }
-        }  else if (lowerHalfMaxHeap.peek() >= num) {
+        }
+        else if (lowerHalfMaxHeap.peek() >= num) {
             if (lowerHalfMaxHeap.size() == upperHalfMinHeap.size()) {
-                lowerHalfMaxHeap.add(upperHalfMinHeap.poll());
+                lowerHalfMaxHeap.add(num);
             } else {
-                upperHalfMinHeap.add(num);
+                upperHalfMinHeap.add(lowerHalfMaxHeap.poll());
+                lowerHalfMaxHeap.add(num);
             }
-        } else if (upperHalfMinHeap.peek() < num) {
+        }
+        else if (lowerHalfMaxHeap.peek() < num) {
             if (lowerHalfMaxHeap.size() == upperHalfMinHeap.size()) {
+                upperHalfMinHeap.add(num);
                 lowerHalfMaxHeap.add(upperHalfMinHeap.poll());
             } else {
                 upperHalfMinHeap.add(num);

@@ -3,23 +3,12 @@ package leetcode.heap.find_median_from_data_stream;
 public class Runner {
     public static void main(String[] args) {
         MedianFinder medianFinder = new MedianFinder();
-        medianFinder.addNum(-1);
-        System.out.println(medianFinder.findMedian());
-
-        medianFinder.addNum(-2);
-        System.out.println(medianFinder.findMedian());
-
-        medianFinder.addNum(-3);
-        System.out.println(medianFinder.findMedian());
-
-        medianFinder.addNum(-4);
-        System.out.println(medianFinder.findMedian());
-
-        medianFinder.addNum(-5);
-        System.out.println(medianFinder.findMedian());
-
-
-        System.out.println(medianFinder.findMedian());
+        for(int i = 0; i < 10; i++) {
+            int x = (int)(Math.random() * 100 ) % 100;
+            medianFinder.addNum(x);
+            System.out.println("Added: " + (x));
+            System.out.println(medianFinder.findMedian());
+        }
     }
 }
 
