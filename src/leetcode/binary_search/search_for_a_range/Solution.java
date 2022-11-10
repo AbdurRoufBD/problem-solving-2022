@@ -4,39 +4,48 @@ import java.util.Objects;
 
 public class Solution {
     public int[] searchRange(int[] nums, int target) {
-        if(Objects.isNull(nums) || nums.length == 0) {
-            return new int[] {-1, -1};
+        if(nums.length == 1 && nums[0] == target) {
+            return new int[]{0, 0};
         }
+        int startIdx = -1;
+        int endIdx = -1;
 
         int left = 0;
-        int right = nums.length;
-        int startIdx = -1;
+        int right = nums.length - 1;
         while(left < right) {
             int mid = left + (right - left) / 2;
-            int midRight = (mid + 1) % nums.length;
-            if(nums[mid] != target && nums[midRight] == target) {
-                startIdx = midRight;
-                break;
+            if(target == nums[mid]) {
+                int midLeft = mid - 1;
+                if(midLeft >= 0 && target != nums[midLeft] || midLeft < 0) {
+                    startIdx = mid;
+                    break;
+                } else {
+                    right = mid;
+                }
             } else if (nums[mid] < target) {
                 left = mid + 1;
             } else {
-                right = mid;
+                right = mid - 1;
             }
         }
 
-        int endIdx = -1;
+
         left = 0;
-        right = nums.length;
+        right = nums.length - 1;
         while(left < right) {
             int mid = left + (right - left) / 2;
-            int midLeft = (mid - 1 + nums.length) % nums.length;
-            if(nums[mid] != target && nums[midLeft] == target) {
-                endIdx = midLeft;
-                break;
-            } else if (nums[midLeft] > target) {
-                right = mid - 1;
+            if(target == nums[mid]) {
+                int midRight = mid + 1;
+                if(midRight < nums.length && target != nums[midRight] || midRight >= nums.length) {
+                    endIdx = mid;
+                    break;
+                } else {
+                    left = mid + 1;
+                }
+            } else if (nums[mid] < target) {
+                left = mid + 1;
             } else {
-                left = mid;
+                right = mid - 1;
             }
         }
 
