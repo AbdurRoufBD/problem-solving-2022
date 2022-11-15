@@ -48,42 +48,18 @@ public class Solution {
         int closest = root.val;
         TreeNode itr = root;
         while(true) {
-            TreeNode left = itr.left;
-            TreeNode right = itr.right;
-            if(left == null && right == null) {
+            if(itr == null) {
                 return closest;
-            } else if (left == null && right != null) {
-                closest = Math.abs(target - closest) > Math.abs(target - right.val) ? right.val : closest;
-                itr = itr.left;
-            } else if (left != null && right == null) {
-                closest = Math.abs(target - closest) > Math.abs(target - right.val) ? right.val : closest;
-                itr = itr.left;
-            } else if (left != null && right != null) {
-                double leftClosestAbs = Math.abs(target - left.val);
-                double rightClosestAbs = Math.abs(target - right.val);
-                double closestAbs = Math.abs(target - closest);
+            }
 
-                if(closestAbs < leftClosestAbs && closestAbs < rightClosestAbs) {
-                    return closest;
-                } else {
-                    if(leftClosestAbs < closestAbs) {
-                        if(leftClosestAbs < rightClosestAbs) {
-                            closest = left.val;
-                            itr = itr.left;
-                        } else {
-                            closest = right.val;
-                            itr = itr.left;
-                        }
-
-                    } else {
-                        if(rightClosestAbs < closest) {
-                            closest = right.val;
-                            itr = itr.left;
-                        } else {
-                            return closest;
-                        }
-                    }
-                }
+            if(itr.val == target) {
+                return itr.val;
+            } else if(itr.val > target) {
+                closest = Math.abs(closest - target) > Math.abs(itr.val - target) ? itr.val : closest;
+                itr = itr.left;
+            } else {
+                closest = Math.abs(closest - target) > Math.abs(itr.val - target) ? itr.val : closest;
+                itr = itr.right;
             }
         }
 
