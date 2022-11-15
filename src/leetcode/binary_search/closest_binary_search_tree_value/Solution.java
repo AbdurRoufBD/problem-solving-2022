@@ -12,7 +12,8 @@ public class Solution {
         list.add(node.val);
         makeArray(node.right, list);
     }
-    public int closestValue(TreeNode root, double target) {
+
+    public int closestValue1(TreeNode root, double target) {
         List<Integer> list = new ArrayList<>();
         makeArray(root, list);
         int left = 0;
@@ -42,5 +43,49 @@ public class Solution {
         }
 
         return Math.abs(target - leftIdxElement) < Math.abs(target - rightIdxElement) ? leftIdxElement : rightIdxElement;
+    }
+    public int closestValue(TreeNode root, double target) {
+        int closest = root.val;
+        TreeNode itr = root;
+        while(true) {
+            TreeNode left = itr.left;
+            TreeNode right = itr.right;
+            if(left == null && right == null) {
+                return closest;
+            } else if (left == null && right != null) {
+                closest = Math.abs(target - closest) > Math.abs(target - right.val) ? right.val : closest;
+                itr = itr.left;
+            } else if (left != null && right == null) {
+                closest = Math.abs(target - closest) > Math.abs(target - right.val) ? right.val : closest;
+                itr = itr.left;
+            } else if (left != null && right != null) {
+                double leftClosestAbs = Math.abs(target - left.val);
+                double rightClosestAbs = Math.abs(target - right.val);
+                double closestAbs = Math.abs(target - closest);
+
+                if(closestAbs < leftClosestAbs && closestAbs < rightClosestAbs) {
+                    return closest;
+                } else {
+                    if(leftClosestAbs < closestAbs) {
+                        if(leftClosestAbs < rightClosestAbs) {
+                            closest = left.val;
+                            itr = itr.left;
+                        } else {
+                            closest = right.val;
+                            itr = itr.left;
+                        }
+
+                    } else {
+                        if(rightClosestAbs < closest) {
+                            closest = right.val;
+                            itr = itr.left;
+                        } else {
+                            return closest;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }
