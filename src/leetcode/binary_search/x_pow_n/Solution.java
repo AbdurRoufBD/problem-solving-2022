@@ -6,9 +6,6 @@ public class Solution {
     //https://leetcode.com/explore/learn/card/binary-search/137/conclusion/982/
     HashMap<Integer, Double> memory;
     private double pow(double x_to_sth, int times) {
-        if(times == 0) {
-            return 1;
-        }
         if(memory.containsKey(times)) {
             return memory.get(times);
         }
@@ -27,6 +24,7 @@ public class Solution {
     }
     public double myPow(double x, int n) {
         memory = new HashMap<>();
+        memory.put(0, 1d);
         double ans = pow(x, Math.abs(n));
         return n < 0 ? 1 / ans : ans;
     }
