@@ -1,4 +1,4 @@
-package leetcode.binary_search.binary_search;
+package leetcode.binary_search.impl;
 //https://leetcode.com/explore/learn/card/binary-search/138/background/1038/
 public class Solution {
     public int search(int[] nums, int target) {
@@ -16,7 +16,6 @@ public class Solution {
                 lo = mid + 1;
             }
             mid = (hi + lo) / 2;
-            System.out.println(mid);
         }
         return idx;
     }
