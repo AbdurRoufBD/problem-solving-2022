@@ -14,6 +14,13 @@ public class Solution {
                 int midNext = (mid + 1) % nums.length;
                 if(nums[midNext] < nums[mid]) {
                     return nums[midNext];
+                } if(nums[midNext] == nums[mid]) {
+                    int midBefore = (nums.length + mid - 1) % nums.length;
+                    if(midBefore > left && nums[midBefore] < nums[mid]) {
+                        return nums[midBefore];
+                    } else {
+                        right = mid - 1;
+                    }
                 } else {
                     left = mid + 1;
                 }
