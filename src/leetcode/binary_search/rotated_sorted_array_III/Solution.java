@@ -5,7 +5,6 @@ public class Solution {
         if(nums.length == 1) {
             return nums[0];
         }
-        
         int left = 0;
         int right = nums.length - 1;
         while(left <= right) {
