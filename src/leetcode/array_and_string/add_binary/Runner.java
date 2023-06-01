@@ -5,11 +5,6 @@ public class Runner {
         /*String a = "101010101";
         String b = "11111111111";
         new Solution().addBinary(a, b);*/
-        System.out.println("Hello world");
+        System.out.println("Hello from nevada, RENO");
     }
 }
-
-//          1 1 1 0
-//            1 1 1
-//-----------------
-//        1 0 1  0 1
