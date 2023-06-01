@@ -1,4 +1,0 @@
-["MyLinkedList","addAtIndex","addAtIndex","addAtIndex","get"]
-[[],[0,10],[0,20],[1,30],[0]]
-
-
